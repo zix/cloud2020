@@ -1,13 +1,12 @@
 package com.atguigu.springcloud.payment.controller;
 
-
-import com.alibaba.druid.support.json.JSONUtils;
 import com.alibaba.fastjson.JSON;
 import com.atguigu.springcloud.payment.entity.CommonResult;
 import com.atguigu.springcloud.payment.entity.Payment;
 import com.atguigu.springcloud.payment.service.IPaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -23,13 +22,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/payment")
 public class PaymentController {
     @Autowired
-    IPaymentService paymentService;
+    private IPaymentService paymentService;
+
+    @Value("${server.port}")
+    private String serverPort;
 
     @PostMapping("/create")
     public CommonResult create(@RequestBody Payment payment) {
         boolean result = paymentService.save(payment);
         log.info("save结果："+ result);
-        return new CommonResult(200, "success", result);
+        return new CommonResult(200, "success,serverPort:"+serverPort, result);
     }
 
     @GetMapping("/get/{id}")
@@ -37,6 +39,6 @@ public class PaymentController {
         log.info("参数：{}", id);
         Payment payment = paymentService.getById(id);
         log.info("Save结果：{}", JSON.toJSONString(payment));
-        return new CommonResult(200, "success", payment);
+        return new CommonResult(200, "success,serverPort:"+serverPort, payment);
     }
 }

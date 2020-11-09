@@ -10,7 +10,12 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>cloud-api-common</module>
+        <module>cloud-consumer-order80</module>
         <module>cloud-provider-payment8001</module>
+        <module>cloud-eureka-server7001</module>
+        <module>cloud-eureka-server7002</module>
+        <module>cloud-provider-payment8002</module>
     </modules>
 
     <name>Maven</name>
@@ -102,6 +107,16 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>1.2.73</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>1.1.10</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.1.10</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
