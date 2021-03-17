@@ -10,6 +10,12 @@ spring:
     url: jdbc:mysql://localhost:3306/db2020_cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
     username: root
     password: root123;
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      #采样率值介于0到1之间，1则表示全部采集
+      probability: 1
 
 eureka:
   client:
